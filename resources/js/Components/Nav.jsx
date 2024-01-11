@@ -16,6 +16,7 @@ import {
 import { Link } from "@inertiajs/react";
 import { FaAngleDown } from "react-icons/fa6";
 import NavLink from "./NavLink";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Nav({ user }) {
     return (
@@ -58,6 +59,12 @@ function Nav({ user }) {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <div className="cursor-pointer flex items-center gap-2">
+                                    <Avatar className="w-8 h-8 object-contain">
+                                        <AvatarImage src="/assets/default_profile.png" />
+                                        <AvatarFallback>
+                                            {user.name}
+                                        </AvatarFallback>
+                                    </Avatar>
                                     {user.email} <FaAngleDown />
                                 </div>
                             </DropdownMenuTrigger>
@@ -82,9 +89,9 @@ function Nav({ user }) {
                                         </Link>
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
-                                <DropdownMenuSeparator />
+                                <DropdownMenuSeparator className="md:hidden" />
                                 {/* mobile */}
-                                <DropdownMenuGroup>
+                                <DropdownMenuGroup className="md:hidden">
                                     <DropdownMenuItem>
                                         <NavLink
                                             href={route("dashboard")}

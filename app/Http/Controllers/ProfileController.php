@@ -47,6 +47,20 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit');
     }
 
+    public function updateProfilePicture(Request $request) {
+        $validatedData = $request->validate([
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if (Auth::user()->hasMedia('profile_image')) {
+            Auth::user()->clearMediaCollection('profile_image');
+        }
+
+        Auth::user()->addMediaFromRequest('profile_image')->toMediaCollection("profile_image");
+
+        // return Redirect::route('profile.view', Auth::id());
+    }
+
     /**
      * Delete the user's account.
      */
