@@ -8,15 +8,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 function UpdateProfilePicture({ className }) {
+    const user = usePage().props.auth.user;
+
     const { data, setData, post, errors, processing, recentlySuccessful } =
         useForm({
-            profile_image: null,
+            profile_image: undefined,
         });
 
+    console.log(data.profile_image);
     const submit = (e) => {
         e.preventDefault();
-
-        console.log(data.profile_image);
 
         console.log("submit");
         post(route("profile.picture.update"), {
@@ -48,7 +49,10 @@ function UpdateProfilePicture({ className }) {
                     encType="multipart/form-data"
                 >
                     <img
-                        src="/assets/default_profile.png"
+                        src={
+                            user.profile_img_url ||
+                            "/assets/default_profile.png"
+                        }
                         alt="profile picture"
                         className="object-contain w-24 h-24 rounded-full"
                     />

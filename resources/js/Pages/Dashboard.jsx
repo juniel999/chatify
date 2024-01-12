@@ -4,14 +4,7 @@ import { CiInboxIn } from "react-icons/ci";
 import { RiUserFollowLine } from "react-icons/ri";
 import { CiInboxOut } from "react-icons/ci";
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Dashboard({ auth }) {
     return (

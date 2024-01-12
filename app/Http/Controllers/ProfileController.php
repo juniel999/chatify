@@ -48,17 +48,21 @@ class ProfileController extends Controller
     }
 
     public function updateProfilePicture(Request $request) {
-        $validatedData = $request->validate([
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        $request->validate([
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if (Auth::user()->hasMedia('profile_image')) {
-            Auth::user()->clearMediaCollection('profile_image');
-        }
+        $user = Auth::user();
 
-        Auth::user()->addMediaFromRequest('profile_image')->toMediaCollection("profile_image");
+        // Clear existing media collection for profile_image
+        $user->clearMediaCollection('profile_image');
 
-        // return Redirect::route('profile.view', Auth::id());
+        // Add the new profile image to the media collection
+        $user->addMediaFromRequest('profile_image')->toMediaCollection('profile_image');
+
+        // Update the profile_img_url in the database and save the user
+        $user->profile_img_url = parse_url($user->getFirstMediaUrl('profile_image'), PHP_URL_PATH);
+        $user->save();
     }
 
     /**
