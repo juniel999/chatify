@@ -11,7 +11,6 @@ use Inertia\Inertia;
 class MessageController extends Controller
 {
     public function index() {
-
         return Inertia::render("Message/Index", [
             'messages' => Auth::user()->receivedMessages
         ]);

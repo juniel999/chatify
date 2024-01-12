@@ -19,6 +19,8 @@ import NavLink from "./NavLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Nav({ user }) {
+    const avatarImg = user?.profile_img_url || "/assets/default_profile.png";
+
     return (
         <>
             <div className="h-[10vh] flex items-center p-4 sm:p-8 border-b">
@@ -59,13 +61,15 @@ function Nav({ user }) {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <div className="cursor-pointer flex items-center gap-2">
-                                    <Avatar className="w-8 h-8 object-contain">
-                                        <AvatarImage src="/assets/default_profile.png" />
-                                        <AvatarFallback>
-                                            {user.name}
-                                        </AvatarFallback>
-                                    </Avatar>
-                                    {user.email} <FaAngleDown />
+                                    <img
+                                        src={avatarImg}
+                                        alt="profile avatar image"
+                                        className="w-8 h-8 object-contain rounded-full hover:border-2 border-white"
+                                    />
+                                    <p className="md:inline-block hidden">
+                                        {user.email}
+                                    </p>{" "}
+                                    <FaAngleDown />
                                 </div>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56">
@@ -76,7 +80,7 @@ function Nav({ user }) {
                                 <DropdownMenuGroup>
                                     <Link href={route("profile.edit")}>
                                         <DropdownMenuItem>
-                                            Profile
+                                            Settings
                                         </DropdownMenuItem>
                                     </Link>
                                     <DropdownMenuItem>
