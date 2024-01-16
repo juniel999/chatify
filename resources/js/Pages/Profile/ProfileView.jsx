@@ -16,6 +16,7 @@ import { Transition } from "@headlessui/react";
 import { FaCheck } from "react-icons/fa";
 import { useRef, useState } from "react";
 import { FaCopy } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
 
 function ProfileView({ auth, user }) {
     const {
@@ -68,7 +69,7 @@ function ProfileView({ auth, user }) {
                 <Head title={user.name + " | Profile"} />
                 <div className="py-12 px-4">
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div className="bg-white dark:bg-zinc-950 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div className="bg-white py-5 dark:bg-zinc-950 overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="flex flex-col h-full items-center justify-center">
                                 <img
                                     src={userProfile}
@@ -153,7 +154,7 @@ function ProfileView({ auth, user }) {
                                             </p>
                                             <p
                                                 ref={copyLink}
-                                                className="border-2 py-2 px-5 mb-1 rounded-full text-zinc-400"
+                                                className="border-2 py-2 px-3 text-sm mb-1 rounded-full text-zinc-400"
                                             >
                                                 http://127.0.0.1:8000
                                                 {window.location.pathname}
@@ -178,11 +179,12 @@ function ProfileView({ auth, user }) {
                                                 </Transition>
                                             </div>
                                         </div>
-                                        <div className="mt-3">
+                                        <div className="mt-3 flex flex-col items-center">
                                             <p className="text-lg">
                                                 Step 2: Share link in your story
                                             </p>
-                                            <Button className="rounded-full w-full">
+                                            <Button className="rounded-full w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
+                                                <FaInstagram className="me-2" />
                                                 Share!
                                             </Button>
                                         </div>
