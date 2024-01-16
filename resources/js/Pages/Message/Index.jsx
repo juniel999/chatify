@@ -25,6 +25,12 @@ function Index({ auth, messages }) {
                                         message={message}
                                     />
                                 ))}
+
+                                {messages.length <= 0 && (
+                                    <p className="text-zinc-500 text-sm">
+                                        No messages yet.
+                                    </p>
+                                )}
                                 {/* <NewMessageCard isRead={true} />
                                 <NewMessageCard isRead={false} />
                                 <NewMessageCard isRead={true} />

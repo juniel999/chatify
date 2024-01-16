@@ -40,10 +40,7 @@ function Show({ auth, message }) {
                                 </CardContent>
                             </Card>
                             <div className="flex w-full">
-                                <Button
-                                    variant="outline"
-                                    className="mt-3 w-8/12 md:w-4/12 mx-auto"
-                                >
+                                <Button className="mt-3 w-8/12 md:w-4/12 mx-auto bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-full">
                                     <FaInstagram className="me-2" /> Send a
                                     reply
                                 </Button>

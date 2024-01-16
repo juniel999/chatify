@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Message;
+use Illuminate\Support\Str;
+
 
 //spatie media
 use Spatie\MediaLibrary\HasMedia;
@@ -26,7 +28,8 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
-        'profile_img_url'
+        'profile_img_url',
+        'slug',
     ];
 
     /**
@@ -48,6 +51,41 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Override the default route key name
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    // Generate a unique slug for the user
+    public function generateUniqueSlug($name)
+    {
+        $slug = Str::slug($name);
+
+        // Check if the slug is unique
+        $count = User::where('slug', $slug)->count();
+
+        // If not unique, append 5 random numbers
+        if ($count > 0) {
+            $slug .= '-' . rand(10000, 99999);
+        }
+
+        return $slug;
+    }
+
+    public static function create(array $attributes = [])
+    {
+        $user = new static($attributes);
+
+        // Generate a unique slug
+        $user->slug = $user->generateUniqueSlug($user->name);
+
+        $user->save();
+
+        return $user;
+    }
+
 
     public function sentMessages()
     {
