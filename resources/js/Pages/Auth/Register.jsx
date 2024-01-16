@@ -47,7 +47,7 @@ export default function Register() {
                         autoComplete="name"
                         isfocused="true"
                         onChange={(e) => setData("name", e.target.value)}
-                        placeholder="Name"
+                        placeholder="Username"
                         required
                     />
                     <InputError message={errors.name} className="mt-2" />

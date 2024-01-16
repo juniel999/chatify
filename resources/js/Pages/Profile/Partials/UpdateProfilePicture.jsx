@@ -10,12 +10,10 @@ import { Label } from "@/components/ui/label";
 function UpdateProfilePicture({ className }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, post, errors, processing, recentlySuccessful } =
-        useForm({
-            profile_image: undefined,
-        });
+    const { setData, post, errors, processing, recentlySuccessful } = useForm({
+        profile_image: undefined,
+    });
 
-    console.log(data.profile_image);
     const submit = (e) => {
         e.preventDefault();
 

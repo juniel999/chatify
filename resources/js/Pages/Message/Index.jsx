@@ -3,8 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 function Index({ auth, messages }) {
-    console.log("messages: ", messages);
-
+    console.log(messages);
     return (
         <>
             <AuthenticatedLayout
@@ -20,10 +19,16 @@ function Index({ auth, messages }) {
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="bg-white dark:bg-zinc-950 overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                                <NewMessageCard isRead={true} />
+                                {messages.map((message) => (
+                                    <NewMessageCard
+                                        key={message.id}
+                                        message={message}
+                                    />
+                                ))}
+                                {/* <NewMessageCard isRead={true} />
                                 <NewMessageCard isRead={false} />
                                 <NewMessageCard isRead={true} />
-                                <NewMessageCard isRead={true} />
+                                <NewMessageCard isRead={true} /> */}
                             </div>
                         </div>
                     </div>

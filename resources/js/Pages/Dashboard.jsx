@@ -7,6 +7,7 @@ import { CiInboxOut } from "react-icons/ci";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Dashboard({ auth }) {
+    console.log(auth.user);
     return (
         <AuthenticatedLayout
             user={auth.user}
