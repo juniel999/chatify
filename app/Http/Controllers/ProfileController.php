@@ -11,12 +11,17 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\User;
+use Illuminate\Support\Facades\URL;
+
 
 class ProfileController extends Controller
 {
     public function view(User $user) {
         return Inertia::render("Profile/ProfileView", [
-            'user' => $user
+            'user' => $user,
+            'media_share_links' => \Share::page(url()->full(), 'Send me anonymous messages!')
+            ->facebook()
+            ->getRawLinks()
         ]);
     }
 

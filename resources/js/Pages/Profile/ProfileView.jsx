@@ -16,9 +16,9 @@ import { Transition } from "@headlessui/react";
 import { FaCheck } from "react-icons/fa";
 import { useRef, useState } from "react";
 import { FaCopy } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
+import { ImFacebook2 } from "react-icons/im";
 
-function ProfileView({ auth, user }) {
+function ProfileView({ auth, user, media_share_links }) {
     const {
         data,
         setData,
@@ -176,10 +176,13 @@ function ProfileView({ auth, user }) {
                                             <p className="text-lg">
                                                 Step 2: Share link in your story
                                             </p>
-                                            <Button className="rounded-full w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
-                                                <FaInstagram className="me-2" />
+                                            <a
+                                                href={media_share_links}
+                                                className="flex items-center text-black px-4 py-2 justify-center rounded-full w-full bg-white"
+                                            >
+                                                <ImFacebook2 className="me-2" />
                                                 Share!
-                                            </Button>
+                                            </a>
                                         </div>
                                     </div>
                                 )}
