@@ -42,9 +42,11 @@ function ProfileView({ auth, user }) {
 
     const copyLink = useRef(null);
     const [isLinkCopied, setIsLinkedCopied] = useState(false);
+    const shareLink = window.location.href;
+    console.log(shareLink);
 
     const copyToClipboard = () => {
-        const textToCopy = copyLink.current.innerText;
+        const textToCopy = shareLink;
         setIsLinkedCopied(true);
 
         navigator.clipboard
@@ -156,8 +158,7 @@ function ProfileView({ auth, user }) {
                                                 ref={copyLink}
                                                 className="border-2 py-2 px-3 text-sm mb-1 rounded-full text-zinc-400"
                                             >
-                                                http://127.0.0.1:8000
-                                                {window.location.pathname}
+                                                {shareLink.substring(0, 35)}...
                                             </p>
                                             <div className="flex gap-2 items-center w-fit">
                                                 <Button

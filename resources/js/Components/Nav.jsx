@@ -30,14 +30,17 @@ function Nav({ user }) {
             <div className="h-[10vh] flex items-center p-4 sm:p-8 border-b">
                 <div className="flex max-w-7xl mx-auto justify-between items-center w-full">
                     <div className="flex items-center space-x-6">
-                        <div className="flex items-center">
+                        <Link
+                            href={route("profile.view", { user })}
+                            className="flex items-center"
+                        >
                             <img
                                 className="object-contain w-12"
                                 src="/assets/chatify_dark.png"
                                 alt="logo"
                             />
                             <p>Chatify</p>
-                        </div>
+                        </Link>
                         <NavLink
                             href={route("profile.view", { user })}
                             className="md:inline-block hidden text-gray-400 hover:text-white"
