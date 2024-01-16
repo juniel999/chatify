@@ -10,18 +10,18 @@ import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "@inertiajs/react";
 
 function NewMessageCard({ message }) {
-    const cardClassNames = message.isRead
-        ? "bg-zinc-950 hover:bg-zinc-800"
-        : "bg-zinc-900 hover:bg-zinc-800";
+    const cardClassNames = message?.isRead ? "bg-zinc-950" : "bg-zinc-900";
     return (
         <>
             <Link href={route("message.show", { message })}>
-                <Card className={`${cardClassNames} cursor-pointer`}>
+                <Card
+                    className={`${cardClassNames} cursor-pointer hover:bg-zinc-800`}
+                >
                     <CardHeader>
                         <CardTitle>
                             <div className="flex justify-between ">
                                 <span>Anonymous Message!</span>{" "}
-                                {message.isRead ? (
+                                {message?.isRead ? (
                                     <FaCheckCircle />
                                 ) : (
                                     <IoMailUnreadOutline />
