@@ -3,7 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 function Index({ auth, messages }) {
-    console.log(messages);
     return (
         <>
             <AuthenticatedLayout
@@ -31,10 +30,6 @@ function Index({ auth, messages }) {
                                         No messages yet.
                                     </p>
                                 )}
-                                {/* <NewMessageCard isRead={true} />
-                                <NewMessageCard isRead={false} />
-                                <NewMessageCard isRead={true} />
-                                <NewMessageCard isRead={true} /> */}
                             </div>
                         </div>
                     </div>

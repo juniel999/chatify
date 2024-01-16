@@ -1,10 +1,8 @@
 import Nav from "@/Components/Nav";
-import Navbar from "@/Components/Navbar";
 
 export default function Authenticated({ user, header, children }) {
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-zinc-950">
-            {/* <Navbar user={user} /> */}
             <Nav user={user} />
             {header && (
                 <header className="bg-white dark:bg-zinc-950 shadow">

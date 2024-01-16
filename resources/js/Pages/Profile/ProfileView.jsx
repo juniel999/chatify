@@ -32,6 +32,10 @@ function ProfileView({ auth, user }) {
         receiver_id: user.id,
     });
 
+    const copyLink = useRef(null);
+    const [isLinkCopied, setIsLinkedCopied] = useState(false);
+    const shareLink = window.location.href;
+
     function handleMessageSubmit(e) {
         e.preventDefault();
 
@@ -40,24 +44,12 @@ function ProfileView({ auth, user }) {
         });
     }
 
-    const copyLink = useRef(null);
-    const [isLinkCopied, setIsLinkedCopied] = useState(false);
-    const shareLink = window.location.href;
-    console.log(shareLink);
-
     const copyToClipboard = () => {
         const textToCopy = shareLink;
         setIsLinkedCopied(true);
 
-        navigator.clipboard
-            .writeText(textToCopy)
-            .then(() => {
-                console.log("Copied");
-                recentlySuccessful;
-            })
-            .catch((err) =>
-                console.error("Unable to copy text to clipboard", err)
-            );
+        navigator.clipboard.writeText(textToCopy);
+
         setTimeout(() => {
             setIsLinkedCopied(false);
         }, 3000);
