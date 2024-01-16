@@ -18,12 +18,7 @@ use App\Http\Controllers\MessageController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect('/login');
 });
 
 
@@ -40,7 +35,9 @@ Route::middleware('auth')->group(function () {
 
     //messages
     Route::get('/messages', [MessageController::class, 'index'])->name('message.index');
+    Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
     Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('message.send');
+    Route::patch('/messages/{message}', [MessageController::class, 'markAsRead'])->name('message.update');
 });
 
 require __DIR__.'/auth.php';

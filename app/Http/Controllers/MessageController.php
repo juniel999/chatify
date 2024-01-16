@@ -12,8 +12,12 @@ class MessageController extends Controller
 {
     public function index() {
         return Inertia::render("Message/Index", [
-            'messages' => Auth::user()->receivedMessages
+            'messages' => Auth::user()->receivedMessages()->latest()->get()
         ]);
+    }
+
+    public function show(Message $message) {
+        return Inertia::render("Message/Show", compact('message'));
     }
 
     public function sendMessage(Request $request) {
@@ -22,8 +26,6 @@ class MessageController extends Controller
             'receiver_id' => 'required'
         ]);
 
-        // dd($request);
-
         Message::create([
             'sender_id' => Auth::id(),
             'receiver_id' => $validatedData['receiver_id'],
@@ -31,4 +33,12 @@ class MessageController extends Controller
         ]);
     }
 
+    public function markAsRead(Request $request, Message $message){
+        $validatedData = $request->validate(['isRead' => 'required']);
+
+        if(!$message->isRead) {
+            $message->isRead = true;
+            $message->save();
+        }
+    }
 }
