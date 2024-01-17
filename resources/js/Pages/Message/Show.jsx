@@ -4,13 +4,12 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/Components/ui/button";
 import { FaInstagram } from "react-icons/fa";
-import { useCallback, useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 function Show({ auth, message }) {
     const { patch } = useForm({ isRead: message.isRead });

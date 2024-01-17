@@ -61,12 +61,10 @@ class ProfileController extends Controller
 
         // Clear existing media collection for profile_image
         $user->clearMediaCollection('profile_image');
-
-        // Add the new profile image to the media collection
         $user->addMediaFromRequest('profile_image')->toMediaCollection('profile_image');
 
         // Update the profile_img_url in the database and save the user
-        $user->profile_img_url = parse_url($user->getFirstMediaUrl('profile_image'), PHP_URL_PATH);
+        $user->profile_img_url = $user->getFirstMediaUrl('profile_image');
         $user->save();
     }
 
