@@ -25,20 +25,18 @@ function Nav({ user }) {
                 <div className="flex max-w-7xl mx-auto justify-between items-center w-full">
                     <div className="flex items-center space-x-6">
                         <div className="flex items-center">
-                            <img
-                                className="object-contain w-12"
-                                src="/assets/chatify_dark.png"
-                                alt="logo"
-                            />
-                            <p>Chatify</p>
+                            <Link
+                                href={route("profile.view", { user })}
+                                className="flex items-center"
+                            >
+                                <img
+                                    className="object-contain w-12"
+                                    src="/assets/chatify_dark.png"
+                                    alt="logo"
+                                />
+                                <p>Chatify</p>
+                            </Link>
                         </div>
-                        <NavLink
-                            href={route("profile.view", { user })}
-                            className="md:inline-block hidden text-gray-400 hover:text-white"
-                            active={route().current("profile.view")}
-                        >
-                            Profile
-                        </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             className="md:inline-block hidden text-gray-400 hover:text-white"

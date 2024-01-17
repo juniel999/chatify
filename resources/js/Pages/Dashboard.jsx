@@ -6,8 +6,13 @@ import { CiInboxOut } from "react-icons/ci";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function Dashboard({ auth }) {
-    console.log(auth.user);
+export default function Dashboard({
+    auth,
+    total_sent,
+    total_received,
+    total_sent_messages,
+    total_received_messages,
+}) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -33,9 +38,11 @@ export default function Dashboard({ auth }) {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-5xl font-bold">450</p>
+                                    <p className="text-5xl font-bold">
+                                        {total_sent}
+                                    </p>
                                     <p className="text-xs text-muted-foreground">
-                                        +120 from this month
+                                        +{total_sent_messages} from this month
                                     </p>
                                 </CardContent>
                             </Card>
@@ -49,25 +56,12 @@ export default function Dashboard({ auth }) {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-5xl font-bold">152</p>
-                                    <p className="text-xs text-muted-foreground">
-                                        +109 from this month
+                                    <p className="text-5xl font-bold">
+                                        {total_received}
                                     </p>
-                                </CardContent>
-                            </Card>
-                            <Card>
-                                <CardHeader className="pb-2">
-                                    <CardTitle className="tracking-tight text-sm font-medium">
-                                        <div className="flex justify-between">
-                                            <div>Total Followers</div>
-                                            <RiUserFollowLine className="text-base" />
-                                        </div>
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-5xl font-bold">152</p>
                                     <p className="text-xs text-muted-foreground">
-                                        +109 from this month
+                                        +{total_received_messages} from this
+                                        month
                                     </p>
                                 </CardContent>
                             </Card>
